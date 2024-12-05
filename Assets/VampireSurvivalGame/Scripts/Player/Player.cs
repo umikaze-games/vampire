@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,ICharacter
 {
 	[SerializeField]
 	private float moveSpeed;
@@ -17,7 +17,15 @@ public class Player : MonoBehaviour
 	{
 		PlayerMove();
 	}
+	private void OnEnable()
+	{
+		
+	}
 
+	private void OnDisable()
+	{
+	
+	}
 	private void PlayerMove()
 	{
 		moveX=Input.GetAxisRaw("Horizontal");
@@ -29,5 +37,23 @@ public class Player : MonoBehaviour
 			playerAnimator.SetBool("IsMoving", true);
 		}
 		else playerAnimator.SetBool("IsMoving", false);
+	}
+
+	public void TakeDamage(int damage)
+	{
+		PlayerStats.Instance.currentHP-=damage;
+
+		EventHandler.CallUpdatePlayerUIEvent();
+		if (PlayerStats.Instance.currentHP <= 0)
+		{
+			PlayerStats.Instance.currentHP = 0;
+
+			EventHandler.CallDieEvent();
+		}
+	}
+
+	public void Die()
+	{
+		Debug.Log("die");
 	}
 }

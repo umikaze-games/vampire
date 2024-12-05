@@ -50,6 +50,9 @@ TagManager:
   - name: Player
     uniqueID: 3011468253
     locked: 0
+  - name: UI
+    uniqueID: 2957384821
+    locked: 0
   m_RenderingLayers:
   - Default
   - Light Layer 1
