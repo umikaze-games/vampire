@@ -3,15 +3,27 @@ using UnityEngine;
 
 public static class EventHandler
 {
-	public static event Action DieEvent;
-	public static void CallDieEvent()
-	{ 
-		DieEvent?.Invoke();
+	public static event Action PlayerDieEvent;
+	public static void CallPlayerDieEvent()
+	{
+		PlayerDieEvent?.Invoke();
 	}
 
-	public static event Action UpdatePlayerUIEvent;
-	public static void CallUpdatePlayerUIEvent()
+	public static event Action<Enemy> EnemyDieEvent;
+	public static void CallEnemyDieEvent(Enemy enemy)
 	{
-		UpdatePlayerUIEvent?.Invoke();
+		EnemyDieEvent?.Invoke(enemy);
+	}
+
+	public static event Action<float> UpdatePlayerUIEvent;
+	public static void CallUpdatePlayerUIEvent(float healtAmount)
+	{
+		UpdatePlayerUIEvent?.Invoke(healtAmount);
+	}
+
+	public static event Action<Enemy,float> UpdateEnemyUIEvent;
+	public static void CallUpdateEnemyUIEvent(Enemy enemy,float healtAmount)
+	{
+		UpdateEnemyUIEvent?.Invoke(enemy,healtAmount);
 	}
 }

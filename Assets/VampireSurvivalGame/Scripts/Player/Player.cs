@@ -8,7 +8,19 @@ public class Player : MonoBehaviour,ICharacter
 	private float moveX;
 	private float moveY;
 	private Animator playerAnimator;
+	public CharacterStats playerStats;
 
+	public int maxHealth;
+	public int currentExp;
+	public int currentHealth;
+	public int level;
+	public int strength;
+	public int vitality;
+	public int dexterity;
+	private void Awake()
+	{
+		initStats();
+	}
 	private void Start()
 	{
 		playerAnimator = GetComponent<Animator>();
@@ -19,12 +31,12 @@ public class Player : MonoBehaviour,ICharacter
 	}
 	private void OnEnable()
 	{
-		
+		EventHandler.PlayerDieEvent += Die;
 	}
 
 	private void OnDisable()
 	{
-	
+		EventHandler.PlayerDieEvent -= Die;
 	}
 	private void PlayerMove()
 	{
@@ -41,14 +53,16 @@ public class Player : MonoBehaviour,ICharacter
 
 	public void TakeDamage(int damage)
 	{
-		PlayerStats.Instance.currentHP-=damage;
+		currentHealth -= damage;
 
-		EventHandler.CallUpdatePlayerUIEvent();
-		if (PlayerStats.Instance.currentHP <= 0)
+		float healthAmount = (float)currentHealth / (float)maxHealth;
+
+		EventHandler.CallUpdatePlayerUIEvent(healthAmount);
+		if (currentHealth <= 0)
 		{
-			PlayerStats.Instance.currentHP = 0;
+			currentHealth = 0;
 
-			EventHandler.CallDieEvent();
+			EventHandler.CallPlayerDieEvent();
 		}
 	}
 
@@ -56,4 +70,17 @@ public class Player : MonoBehaviour,ICharacter
 	{
 		Debug.Log("die");
 	}
+
+	public void initStats()
+	{
+		maxHealth = playerStats.initHealth;
+		currentHealth = maxHealth;
+		currentExp = 0;
+		level = 1;
+		strength=playerStats.initStrength;
+		vitality = playerStats.initVitality;
+		dexterity = playerStats.iniDexterity;
+
+	}
+
 }

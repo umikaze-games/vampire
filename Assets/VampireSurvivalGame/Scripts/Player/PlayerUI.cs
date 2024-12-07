@@ -5,6 +5,7 @@ public class PlayerUI : MonoBehaviour
 {
 	public static PlayerUI Instance;
     public Image hpBar;
+	public CharacterStats playerStats;
 	private void Awake()
 	{
 		if (Instance == null)
@@ -28,9 +29,8 @@ public class PlayerUI : MonoBehaviour
 		EventHandler.UpdatePlayerUIEvent -= OnUpdatePlayerUIEvent;
 	}
 
-	private void OnUpdatePlayerUIEvent()
-	{
-		float hpBarAmout=(float)PlayerStats.Instance.currentHP / (float)PlayerStats.Instance.maxHP; 
-		hpBar.fillAmount = hpBarAmout;
+	private void OnUpdatePlayerUIEvent(float healthAmout)
+	{; 
+		hpBar.fillAmount = healthAmout;
 	}
 }
