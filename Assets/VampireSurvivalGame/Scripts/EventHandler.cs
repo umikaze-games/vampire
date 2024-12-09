@@ -26,4 +26,10 @@ public static class EventHandler
 	{
 		UpdateEnemyUIEvent?.Invoke(enemy,healtAmount);
 	}
+
+	public static event Action<Enemy, int> ShowDamageUIEvent;
+	public static void CallShowDamageUIEvent(Enemy enemy, int damage)
+	{ 
+		ShowDamageUIEvent?.Invoke(enemy, damage);
+	}
 }

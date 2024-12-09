@@ -71,12 +71,14 @@ public class Enemy : MonoBehaviour,ICharacter
 
 		float healtAmount = (float)currentHealth / (float)maxHealth;
 		enemyUI.UpdateEnemyHealthUI(healtAmount);
+		EventHandler.CallShowDamageUIEvent(this, damage);
 		if (currentHealth <= 0)
 		{
 			currentHealth = 0;
 
 			Die();
 		}
+	
 	}
 
 	public void initStats()
