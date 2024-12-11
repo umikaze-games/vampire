@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour,ICharacter
 	private Rigidbody2D rb;
 	public CharacterStats enemyStats;
 	private EnemyUI enemyUI;
+	private SpriteRenderer spriteRenderer;
 
 	private float atkCD;
 	private int atk;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour,ICharacter
 	public int dexterity;
 	protected virtual void Awake()
 	{
+		spriteRenderer=GetComponent<SpriteRenderer>();
 		rb = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		player = GameObject.FindWithTag("Player");
@@ -56,11 +58,11 @@ public class Enemy : MonoBehaviour,ICharacter
 			animator.SetBool("IsMoving", true);
 			if (dir.x > 0)
 			{
-				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * -1, transform.localScale.y, transform.localScale.z);
+				spriteRenderer.flipX = true;
 			}
 			else
 			{
-				transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * 1, transform.localScale.y, transform.localScale.z);
+				spriteRenderer.flipX = false;
 			}
 		}
 	}
