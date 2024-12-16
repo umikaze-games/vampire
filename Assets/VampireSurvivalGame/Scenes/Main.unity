@@ -149102,6 +149102,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 2540931998717725463, guid: 50d5c71f92c89de4ea0cff3a4838dfce, type: 3}
   spawnEnemyList: []
+  waves:
+  - enemyToSpawn: {fileID: 2540931998717725463, guid: 50d5c71f92c89de4ea0cff3a4838dfce, type: 3}
+    spawnTime: 0.1
+    waveLength: 5
+  - enemyToSpawn: {fileID: 2540931998717725463, guid: 4d535901a62b61749a96e2e4d24f234b, type: 3}
+    spawnTime: 0.1
+    waveLength: 5
+  - enemyToSpawn: {fileID: 2540931998717725463, guid: 50d5c71f92c89de4ea0cff3a4838dfce, type: 3}
+    spawnTime: 0.1
+    waveLength: 5
+  - enemyToSpawn: {fileID: 2540931998717725463, guid: 56f9187a09f2e4343be5c19cfca852d6, type: 3}
+    spawnTime: 0.1
+    waveLength: 5
+  - enemyToSpawn: {fileID: 2540931998717725463, guid: 868b8cce88c9522459a9886220e34daa, type: 3}
+    spawnTime: 0.1
+    waveLength: 10
+  - enemyToSpawn: {fileID: 2540931998717725463, guid: 0494dd99d6b912d47ba6078167dcc572, type: 3}
+    spawnTime: 0.1
+    waveLength: 5
 --- !u!1 &1571647178
 GameObject:
   m_ObjectHideFlags: 0

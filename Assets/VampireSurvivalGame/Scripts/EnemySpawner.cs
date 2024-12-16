@@ -1,12 +1,12 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-	private float spawnInterval=0.05f;
-	private float spawnTimer = 0;
-	private int spawnMaxCount=100;
+	private Player player;
+	//private float spawnInterval=0.05f;
+	private float spawnCount;
+	//private int spawnMaxCount=100;
 	public GameObject enemyPrefab;
 
 	private float spawnXMax=10;
@@ -15,23 +15,54 @@ public class EnemySpawner : MonoBehaviour
 	private float spawnYMin=-10;
 
 	public List<Enemy> spawnEnemyList;
+	public List<EnemyWave> waves;
+	private int currentWave=0;
+	private float waveCounter;
+
+	private void Awake()
+	{
+		player = FindAnyObjectByType<Player>();
+		waveCounter=waves[currentWave].waveLength;
+		spawnCount = waves[currentWave].spawnTime;
+	}
 	private void Update()
 	{
-		spawnTimer += Time.deltaTime;
-		if (spawnEnemyList.Count >= spawnMaxCount||spawnTimer<=spawnInterval) return;
+		spawnCount -= Time.deltaTime;
 		SpawnEnemy();
 	}
 
 	private void SpawnEnemy()
 	{
-		Vector3 spawnPosition = RandomSpawnPosition();
-		GameObject spawnedEnemy=Instantiate(enemyPrefab, spawnPosition, Quaternion.identity,transform);
-		Enemy enemyComponent = spawnedEnemy.GetComponent<Enemy>();
-		if (enemyComponent != null) {
-			spawnEnemyList.Add(enemyComponent);
-			spawnTimer = 0;
+		//Vector3 spawnPosition = RandomSpawnPosition();
+		//GameObject spawnedEnemy=Instantiate(enemyPrefab, spawnPosition, Quaternion.identity,transform);
+		//Enemy enemyComponent = spawnedEnemy.GetComponent<Enemy>();
+		//if (enemyComponent != null) {
+		//	spawnEnemyList.Add(enemyComponent);
+		//	spawnTimer = 0;
+		//}
+
+		if (player.isActiveAndEnabled)
+		{
+			if (currentWave<waves.Count)
+			{
+				waveCounter-=Time.deltaTime;
+				if (waveCounter<=0)
+				{
+					NextWave();
+				}
+			}
+			if (spawnCount<=0)
+			{
+				Vector3 spawnPosition = RandomSpawnPosition();
+				GameObject spawnedEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity, transform);
+				Enemy enemyComponent = spawnedEnemy.GetComponent<Enemy>();
+				if (enemyComponent != null)
+				{
+					spawnEnemyList.Add(enemyComponent);
+				}
+				//spawnCount=waves[currentWave].spawnTime;
+			}
 		}
-	
 	}
 
 	private Vector3 RandomSpawnPosition()
@@ -57,4 +88,24 @@ public class EnemySpawner : MonoBehaviour
 		return new Vector3(spawnX, spawnY, 0);
 	
 	}
+
+	private void NextWave()
+	{ 
+		currentWave++;
+		if (currentWave>waves.Count-1)
+		{
+			currentWave = waves.Count - 1;
+		}
+		enemyPrefab=waves[currentWave].enemyToSpawn;
+		waveCounter = waves[currentWave].waveLength;
+		spawnCount = waves[currentWave].spawnTime;
+	}
+}
+
+[System.Serializable]
+public class EnemyWave
+{
+	public GameObject enemyToSpawn;
+	public float spawnTime=0.2f;
+	public float waveLength=5;
 }
