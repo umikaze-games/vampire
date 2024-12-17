@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1584970828599615171}
   - component: {fileID: 6618069138326365223}
   - component: {fileID: 6549126430287239443}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 3943413706688642452}
   - component: {fileID: 5135766014587811768}
   - component: {fileID: 1538337080574878556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,6 +246,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 0}
+  maxHealth: 0
+  currentHealth: 0
+  strength: 0
+  vitality: 0
+  dexterity: 0
 --- !u!95 &3943413706688642452
 Animator:
   serializedVersion: 7
@@ -294,6 +299,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 0}
+  maxHealth: 0
+  currentHealth: 0
+  strength: 0
+  vitality: 0
+  dexterity: 0
 --- !u!1 &4175119552949698585
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +315,7 @@ GameObject:
   - component: {fileID: 1991749523756458949}
   - component: {fileID: 3226451560868540176}
   - component: {fileID: 1828663642646130566}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +391,7 @@ GameObject:
   - component: {fileID: 8575353678314546947}
   - component: {fileID: 4081247851211957151}
   - component: {fileID: 7070003251258650112}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

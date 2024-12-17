@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1584970828599615171}
   - component: {fileID: 6618069138326365223}
   - component: {fileID: 6549126430287239443}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 3943413706688642452}
   - component: {fileID: 1538337080574878556}
   - component: {fileID: 1575931748748013011}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: 04EnemySkeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 1991749523756458949}
   - component: {fileID: 3226451560868540176}
   - component: {fileID: 1828663642646130566}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Scrollbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 4081247851211957151}
   - component: {fileID: 121558355094946520}
   - component: {fileID: 7070003251258650112}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour,ICharacter
 	private Animator playerAnimator;
 	public CharacterStats playerStats;
 
+	public int coin = 0;
 	public int maxHealth;
 	public int currentExp;
 	public int currentHealth;

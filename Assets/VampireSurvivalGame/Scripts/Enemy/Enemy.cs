@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour,ICharacter
 			currentHealth = 0;
 
 			Die();
+			SpawnExperience();
 		}
 	
 	}
@@ -105,5 +106,10 @@ public class Enemy : MonoBehaviour,ICharacter
 			player.TakeDamage(atk);
 			timer=atkCD;
 		}
+	}
+
+	public void SpawnExperience()
+	{
+		ItemSpawner.Instance.SpawnExperience(transform.position, enemyStats.Exp);
 	}
 }
