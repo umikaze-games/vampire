@@ -30,6 +30,12 @@ public class Pickup : MonoBehaviour
 			{
 				case ItemType.Experience:
 					player.currentExp += items.amount;
+					float amount = (float)player.currentExp / (float)player.nextExp;
+					UIManager.Instance.UpdateExpUI(amount,player.level);
+					if (player.currentExp>=player.nextExp)
+					{
+						EventHandler.CallLevelupEvent();
+					}
 					break;
 				case ItemType.Coin:
 					player.coin += items.amount;

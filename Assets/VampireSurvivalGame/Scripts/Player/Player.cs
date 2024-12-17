@@ -14,10 +14,11 @@ public class Player : MonoBehaviour,ICharacter
 	public int maxHealth;
 	public int currentExp;
 	public int currentHealth;
-	public int level;
+	public int level=1;
 	public int strength;
 	public int vitality;
 	public int dexterity;
+	public int nextExp;
 	private void Awake()
 	{
 		initStats();
@@ -33,11 +34,13 @@ public class Player : MonoBehaviour,ICharacter
 	private void OnEnable()
 	{
 		EventHandler.PlayerDieEvent += Die;
+		EventHandler.LevelupEvent += OnlevelupEvent;
 	}
 
 	private void OnDisable()
 	{
 		EventHandler.PlayerDieEvent -= Die;
+		EventHandler.LevelupEvent -= OnlevelupEvent;
 	}
 	private void PlayerMove()
 	{
@@ -81,7 +84,21 @@ public class Player : MonoBehaviour,ICharacter
 		strength=playerStats.initStrength;
 		vitality = playerStats.initVitality;
 		dexterity = playerStats.iniDexterity;
-
+		nextExp=playerStats.intiLevelupExp;
 	}
+
+	private void OnlevelupEvent()
+	{
+		level++;
+		currentExp -= nextExp;
+		nextExp = (int)(nextExp * playerStats.levelUpExpMultiplier);
+		float amount= (float)currentExp / (float)nextExp;
+		UIManager.Instance.UpdateExpUI(amount, level);
+		if (currentExp>=nextExp)
+		{
+			OnlevelupEvent();
+		}
+	}
+
 
 }

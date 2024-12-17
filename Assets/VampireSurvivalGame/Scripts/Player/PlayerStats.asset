@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initHealth: 100
   maxMana: 100
-  intiLevelupExp: 20
+  intiLevelupExp: 200
   levelUpExpMultiplier: 1.5
   initStrength: 10
   iniDexterity: 10
   initVitality: 10
+  dropExp: 0
+  dropCoin: 0

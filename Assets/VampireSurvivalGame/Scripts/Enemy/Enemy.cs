@@ -110,6 +110,6 @@ public class Enemy : MonoBehaviour,ICharacter
 
 	public void SpawnExperience()
 	{
-		ItemSpawner.Instance.SpawnExperience(transform.position, enemyStats.Exp);
+		ItemSpawner.Instance.SpawnExperience(transform.position, enemyStats.dropExp);
 	}
 }

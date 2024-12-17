@@ -32,4 +32,11 @@ public static class EventHandler
 	{ 
 		ShowDamageUIEvent?.Invoke(enemy, damage);
 	}
+
+	public static event Action LevelupEvent;
+	public static void CallLevelupEvent()
+	{ 
+		LevelupEvent?.Invoke();
+	}
+
 }

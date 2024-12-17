@@ -16,7 +16,7 @@ public class CharacterStats : ScriptableObject
 	public int initStrength=10;
     public int iniDexterity = 10;
     public int initVitality=10;
-	public int Exp = 100;
-	public int Coin = 100;
+	public int dropExp = 100;
+	public int dropCoin = 100;
 
 }
