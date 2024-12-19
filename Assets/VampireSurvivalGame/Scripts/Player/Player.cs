@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour,ICharacter
 {
+	public static Player Instance;
+
 	[SerializeField]
-	private float moveSpeed;
+	private Weapon activeWeapon;
+
+	private float moveSpeed=3;
 	private float moveX;
 	private float moveY;
 	private Animator playerAnimator;
@@ -19,8 +23,16 @@ public class Player : MonoBehaviour,ICharacter
 	public int vitality;
 	public int dexterity;
 	public int nextExp;
+
+	
 	private void Awake()
 	{
+		if (Instance==null)
+		{
+			Instance = this;
+		}
+		else Destroy(this.gameObject);
+
 		initStats();
 	}
 	private void Start()

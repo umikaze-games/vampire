@@ -1,9 +1,11 @@
  using UnityEngine;
 
-public class Fireball : MonoBehaviour
+public class Damager : MonoBehaviour
 {
-	private int damage = 10;
+	public int damage = 10;
 	private float knockBackForce = 10;
+	public float lifeTime;
+
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		Enemy enemy = collision.GetComponent<Enemy>();

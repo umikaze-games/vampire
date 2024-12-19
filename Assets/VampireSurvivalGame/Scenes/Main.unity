@@ -787,7 +787,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94a8708f035b94f4faab77916bae0ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapondata:
+    speed: 2
+    damage: 5
+    range: 1
+    timeBetweenAttack: 1
+    amount: 1
+    duration: 1
+  weaponLevel: 1
   rotateSpeed: 300
+  damager: {fileID: 1338498004}
 --- !u!1 &806297702
 GameObject:
   m_ObjectHideFlags: 0
@@ -149199,7 +149208,7 @@ Transform:
   m_GameObject: {fileID: 1338498000}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -149273,8 +149282,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a4487da381a99243b13b54be3ccd6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!70 &1338498005
-CapsuleCollider2D:
+  damage: 10
+  lifeTime: 0
+--- !u!58 &1338498005
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -149307,9 +149318,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.8, y: 0}
-  m_Size: {x: 2.5, y: 1}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &1472881286
 GameObject:
   m_ObjectHideFlags: 0
@@ -149568,7 +149578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881a537f57da988478849ab5d185e56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  activeWeapon: {fileID: 732939954}
   playerStats: {fileID: 11400000, guid: 07776d21e76b0114aa994478667ddf8b, type: 2}
   coin: 0
   maxHealth: 0
