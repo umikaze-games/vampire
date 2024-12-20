@@ -9,4 +9,6 @@ public class WeaponData
 	public float timeBetweenAttack;
 	public float amount;
 	public float duration;
+	public string description;
+	public Sprite icon;
 }

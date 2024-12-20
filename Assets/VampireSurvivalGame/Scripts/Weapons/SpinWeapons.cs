@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class SpinWeapons : Weapon
 {
-    [SerializeField]
-    private float rotateSpeed=10;
+    private float rotateSpeed;
 	public Damager damager;
 	private float timeBetweenSpawn;
 
@@ -12,6 +11,7 @@ public class SpinWeapons : Weapon
 	private float rangeMultiplier = 0.2f;
 	private float timeBetweenAttackMultiplier = 0.2f;
 	private float durationMultiplier = 0.2f;
+	private float speedMultiplier = 0.2f;
 	private void Start()
 	{
 		UpdateWeaponStats();
@@ -34,6 +34,6 @@ public class SpinWeapons : Weapon
 		transform.localScale = Vector3.one * weapondata.range*(1+ weaponLevel*rangeMultiplier);
 		timeBetweenSpawn = weapondata.timeBetweenAttack * (1 + weaponLevel * timeBetweenAttackMultiplier);
 		damager.lifeTime = weapondata.duration * (1 + weaponLevel * durationMultiplier);
-
+		rotateSpeed = weapondata.speed*(1+ weaponLevel * speedMultiplier);
 	}
 }

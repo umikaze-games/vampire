@@ -39,4 +39,9 @@ public static class EventHandler
 		LevelupEvent?.Invoke();
 	}
 
+	public static event Action LevelupEndEvent;
+	public static void CallLevelupEndEvent()
+	{
+		LevelupEndEvent?.Invoke();
+	}
 }
