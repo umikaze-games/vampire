@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour,ICharacter
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour,ICharacter
 	public int dexterity;
 	public int nextExp;
 
+	public List<Weapon> unassignedWeapons, assignedWeapons;
 	
 	private void Awake()
 	{
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour,ICharacter
 	private void Start()
 	{
 		playerAnimator = GetComponent<Animator>();
+		AddWeapon(0);
 	}
 	private void Update()
 	{
@@ -112,5 +115,14 @@ public class Player : MonoBehaviour,ICharacter
 		}
 	}
 
+	public void AddWeapon(int weaponIndex)
+	{
+		if (weaponIndex < unassignedWeapons.Count)
+		{
+			assignedWeapons.Add(unassignedWeapons[weaponIndex]);
+			unassignedWeapons[weaponIndex].gameObject.SetActive(true);
+			unassignedWeapons.RemoveAt(weaponIndex);
+		}
+	}
 
 }

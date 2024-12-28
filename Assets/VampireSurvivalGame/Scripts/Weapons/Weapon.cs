@@ -13,10 +13,8 @@ public class Weapon : MonoBehaviour
 	public void WeaponLevelup()
 	{
 		weaponLevel++;
-		levelupUI.UpgradeWeaponUI(this);
-		EventHandler.CallLevelupEndEvent();
+		//levelupUI.UpgradeWeaponUI(this,levelupType.assignedWeapon,);
 		Time.timeScale = 1.0f;
 	}
-
 	
 }
