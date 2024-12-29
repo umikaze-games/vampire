@@ -27,4 +27,6 @@ public class Damager : MonoBehaviour
 		Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
 		enemyRb.AddForce(dir*knockBackForce,ForceMode2D.Impulse);
 	}
+
+
 }

@@ -112,4 +112,9 @@ public class Enemy : MonoBehaviour,ICharacter
 	{
 		ItemSpawner.Instance.SpawnExperience(transform.position, enemyStats.dropExp);
 	}
+
+	public bool IsAlive()
+	{
+		return currentHealth > 0;
+	}
 }
