@@ -94,6 +94,7 @@ public class Enemy : MonoBehaviour,ICharacter
 	}
 	public void Die()
 	{
+		EventHandler.CallRemoveEnemyEvent(this);
 		Destroy(gameObject);
 	}
 

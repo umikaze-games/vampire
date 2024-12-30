@@ -44,7 +44,6 @@ public class LevelupUI : MonoBehaviour
 		else if (levelupType == levelupType.unassignedWeapon)
 		{
 			int dex = index - Player.Instance.assignedWeapons.Count;
-			Debug.Log(dex);
 			Player.Instance.AddWeapon(dex);
 			EventHandler.CallLevelupEndEvent();
 		}

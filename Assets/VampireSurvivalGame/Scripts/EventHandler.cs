@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public static class EventHandler
@@ -43,5 +44,17 @@ public static class EventHandler
 	public static void CallLevelupEndEvent()
 	{
 		LevelupEndEvent?.Invoke();
+	}
+
+	public static event Action<Projectiles> RemoveProjectileEvent;
+	public static void CallRemoveProjectileEvent(Projectiles Projectile)
+	{
+		RemoveProjectileEvent?.Invoke(Projectile);
+	}
+
+	public static event Action<Enemy> RemoveEnemyEvent;
+	public static void CallRemoveEnemyEvent(Enemy Enemy)
+	{
+		RemoveEnemyEvent?.Invoke(Enemy);
 	}
 }

@@ -28,19 +28,20 @@ public class EnemySpawner : MonoBehaviour
 	private void Update()
 	{
 		spawnCount -= Time.deltaTime;
+		if (spawnCount >= 200) return;
 		SpawnEnemy();
 	}
+	private void OnEnable()
+	{
+		EventHandler.RemoveEnemyEvent += OnRemoveEnemyEvent;
+	}
 
+	private void OnDisable()
+	{
+		EventHandler.RemoveEnemyEvent -= OnRemoveEnemyEvent;
+	}
 	private void SpawnEnemy()
 	{
-		//Vector3 spawnPosition = RandomSpawnPosition();
-		//GameObject spawnedEnemy=Instantiate(enemyPrefab, spawnPosition, Quaternion.identity,transform);
-		//Enemy enemyComponent = spawnedEnemy.GetComponent<Enemy>();
-		//if (enemyComponent != null) {
-		//	spawnEnemyList.Add(enemyComponent);
-		//	spawnTimer = 0;
-		//}
-
 		if (player.isActiveAndEnabled)
 		{
 			if (currentWave<waves.Count)
@@ -99,6 +100,14 @@ public class EnemySpawner : MonoBehaviour
 		enemyPrefab=waves[currentWave].enemyToSpawn;
 		waveCounter = waves[currentWave].waveLength;
 		spawnCount = waves[currentWave].spawnTime;
+	}
+
+	private void OnRemoveEnemyEvent(Enemy enemy)
+	{
+		if(spawnEnemyList.Contains(enemy))
+		{
+			spawnEnemyList.Remove(enemy);
+		}
 	}
 }
 
