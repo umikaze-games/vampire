@@ -99,8 +99,8 @@ public class ProjectileWeaponsWeapons : Weapon
 			projectiles[i].transform.rotation = Quaternion.Euler(0, 0, angle);
 			projectiles[i].movespeed = 3;
 			projectiles[i].GetComponent<Collider2D>().enabled = true;
+			projectiles[i].transform.parent = null;
 			projectiles.RemoveAt(i);
-			Debug.Log("fire");
 		}
 		aimedEnemies.Clear();
 	}
@@ -132,7 +132,7 @@ public class ProjectileWeaponsWeapons : Weapon
 	
 		while(GetChildProjectileCount() < weaponAmount)
 		{
-			var instantiatedGameObject = Instantiate(projectile, transform.position, Quaternion.identity, transform);
+			var instantiatedGameObject = Instantiate(projectile, transform.position, Quaternion.identity,transform);
 			Projectiles instantiatedProjectile = instantiatedGameObject.GetComponent<Projectiles>();
 			instantiatedProjectile.damage = damage;
 			projectiles.Add(instantiatedProjectile);
