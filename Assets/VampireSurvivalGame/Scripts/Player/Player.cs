@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour,ICharacter
 	private float moveY;
 	private Animator playerAnimator;
 	public CharacterStats playerStats;
+	public GameObject deadParticle;
 
 	public int coin = 0;
 	public int maxHealth;
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour,ICharacter
 	public int dexterity;
 	public int nextExp;
 
+	private bool isGameOver;
+	public bool IsGameOver { get=>isGameOver; }
 	public List<Weapon> unassignedWeapons, assignedWeapons;
 	
 	private void Awake()
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour,ICharacter
 		else Destroy(this.gameObject);
 
 		initStats();
+
 	}
 	private void Start()
 	{
@@ -48,12 +53,14 @@ public class Player : MonoBehaviour,ICharacter
 	}
 	private void OnEnable()
 	{
+		EventHandler.GameOverEvent += OnGameOver;
 		EventHandler.PlayerDieEvent += Die;
 		EventHandler.LevelupEvent += OnlevelupEvent;
 	}
 
 	private void OnDisable()
 	{
+		EventHandler.GameOverEvent -= OnGameOver;
 		EventHandler.PlayerDieEvent -= Die;
 		EventHandler.LevelupEvent -= OnlevelupEvent;
 	}
@@ -87,11 +94,12 @@ public class Player : MonoBehaviour,ICharacter
 
 	public void Die()
 	{
-		Debug.Log("die");
+		EventHandler.CallGameOverEvent();
 	}
 
 	public void initStats()
 	{
+	    isGameOver=false;
 		maxHealth = playerStats.initHealth;
 		currentHealth = maxHealth;
 		currentExp = 0;
@@ -123,6 +131,13 @@ public class Player : MonoBehaviour,ICharacter
 			unassignedWeapons[weaponIndex].gameObject.SetActive(true);
 			unassignedWeapons.RemoveAt(weaponIndex);
 		}
+	}
+
+	private void OnGameOver()
+	{
+		Instantiate(deadParticle, transform.position, Quaternion.Euler(-90, 0, 0));
+		this.gameObject.SetActive(false);
+		isGameOver = true;
 	}
 
 }

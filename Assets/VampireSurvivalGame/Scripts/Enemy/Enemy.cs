@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour,ICharacter
 	}
 	private void Update()
 	{
+		if (Player.Instance.IsGameOver==true) return;
 		Chase(player.transform.position);
 		timer -= Time.deltaTime;
 	}
@@ -80,6 +81,7 @@ public class Enemy : MonoBehaviour,ICharacter
 
 			Die();
 			SpawnExperience();
+			SpawnCoins();
 		}
 	
 	}
@@ -96,6 +98,7 @@ public class Enemy : MonoBehaviour,ICharacter
 	{
 		EventHandler.CallRemoveEnemyEvent(this);
 		Destroy(gameObject);
+		
 	}
 
 	private void OnTriggerStay2D(Collider2D collision)
@@ -111,11 +114,21 @@ public class Enemy : MonoBehaviour,ICharacter
 
 	public void SpawnExperience()
 	{
-		ItemSpawner.Instance.SpawnExperience(transform.position, enemyStats.dropExp);
+		ItemManager.Instance.SpawnExperience(transform.position, enemyStats.dropExp);
+	}
+
+	public void SpawnCoins()
+	{
+		int randomRate=Random.Range(0,100);
+		if (randomRate>=50)
+		{
+			ItemManager.Instance.SpawnCoins(transform.position, enemyStats.dropCoin);
+		}
 	}
 
 	public bool IsAlive()
 	{
 		return currentHealth > 0;
 	}
+
 }

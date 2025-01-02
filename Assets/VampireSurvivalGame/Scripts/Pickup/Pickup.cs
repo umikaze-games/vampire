@@ -5,21 +5,18 @@ public class Pickup : MonoBehaviour
 	private Player player;
 	public float pickupRange=20;
 	private float moveSpeed=5;
-	//private float pickupInterval = 0.2f;
-	//private float timer;
+	private float pickupInterval = 0.2f;
+	private float timer;
 	private void Awake()
 	{
 		player = GetComponent<Player>();
 
 	}
-
 	private void Update()
 	{
-		//timer += Time.deltaTime;
-		
-			PickupItems();
-			//timer = 0;
-		
+
+		PickupItems();
+
 	}
 	private void OnTriggerStay2D(Collider2D collision)
 	{
@@ -39,6 +36,7 @@ public class Pickup : MonoBehaviour
 					break;
 				case ItemType.Coin:
 					player.coin += items.amount;
+					UIManager.Instance.UpdateCoinsUI(player.coin);
 					break;
 				case ItemType.Health:
 					player.currentHealth += items.amount;

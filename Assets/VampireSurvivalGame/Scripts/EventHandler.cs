@@ -57,4 +57,10 @@ public static class EventHandler
 	{
 		RemoveEnemyEvent?.Invoke(Enemy);
 	}
+
+	public static event Action GameOverEvent;
+	public static void CallGameOverEvent()
+	{ 
+		GameOverEvent?.Invoke();
+	}
 }

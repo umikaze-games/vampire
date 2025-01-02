@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,10 +7,16 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+	private float timer;
+	private float gameTime;
+	public TextMeshProUGUI gameTimeText;
+
 	public static UIManager Instance;
 	public Slider expSlider;
+	public TextMeshProUGUI coinsAmount;
 	public TextMeshProUGUI levelText;
 	public GameObject weaponLevelupPanel;
+	public GameObject gameOverPanel;
 
 	private int levelupBtnIndex;
 	public List<LevelupUI> levelupBtns;
@@ -24,15 +31,31 @@ public class UIManager : MonoBehaviour
 	private void Start()
 	{
 		UpdateWeapons();
+		UpdateCoinsUI(Player.Instance.coin);
+		UpdateGameTimeUI();
+	}
+
+	private void Update()
+	{
+		if (Player.Instance.IsGameOver == true) return;
+		gameTime += Time.deltaTime;
+		timer += Time.deltaTime;
+		if (timer>=1)
+		{
+			UpdateGameTimeUI();
+			timer= 0;
+		}
 	}
 	private void OnEnable()
 	{
+		EventHandler.GameOverEvent += OnGameOverEvent;
 		EventHandler.LevelupEvent += OnCallLevelupEvent;
 		EventHandler.LevelupEndEvent += OnCallLevelupEndEvent;
 	}
 
 	private void OnDisable()
 	{
+		EventHandler.GameOverEvent -= OnGameOverEvent;
 		EventHandler.LevelupEvent -= OnCallLevelupEvent;
 		EventHandler.LevelupEndEvent -= OnCallLevelupEndEvent;
 	}
@@ -55,6 +78,11 @@ public class UIManager : MonoBehaviour
 		expSlider.value = amount;
 		levelText.text = $"level {level}";
 
+	}
+
+	public void UpdateCoinsUI(int amount)
+	{
+		coinsAmount.text =$"{amount}" ;
 	}
 
 	public void UpdateWeapons()
@@ -90,4 +118,21 @@ public class UIManager : MonoBehaviour
 	
 	}
 
+	private void UpdateGameTimeUI()
+	{
+		float seconds = gameTime%60;
+		float mintue = gameTime/60;
+		string showedGameTime=$"Time {mintue:00}:{seconds:00}";
+		gameTimeText.text= showedGameTime;
+	}
+	private void OnGameOverEvent()
+	{
+		StartCoroutine(ShowGameOverPanel());
+	}
+
+	IEnumerator ShowGameOverPanel()
+	{
+		yield return new WaitForSeconds(1);
+		gameOverPanel.SetActive(true);
+	}
 }
