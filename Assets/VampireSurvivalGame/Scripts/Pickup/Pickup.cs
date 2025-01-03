@@ -44,8 +44,8 @@ public class Pickup : MonoBehaviour
 				default:
 					break;
 			}
-			Destroy(collision.gameObject);
-
+			EventHandler.CallPlaySFXEvent(SFXName.Pickup);
+			Destroy(collision.gameObject);	
 		}
 	}
 	public void PickupItems()

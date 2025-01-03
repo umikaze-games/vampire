@@ -91,6 +91,7 @@ public class ProjectileWeaponsWeapons : Weapon
 			Enemy enemyInRange=enemy.GetComponent<Enemy>();
 			aimedEnemies.Add(enemyInRange);
 		}
+		EventHandler.CallPlaySFXEvent(SFXName.DaggerThrow01);
 		for (int i = projectiles.Count - 1; i >= 0; i--)
 		{
 			Vector3 dir = aimedEnemies[Random.Range(0, aimedEnemies.Count)].transform.position - transform.position;
@@ -102,6 +103,7 @@ public class ProjectileWeaponsWeapons : Weapon
 			projectiles[i].transform.parent = null;
 			projectiles.RemoveAt(i);
 		}
+	
 		aimedEnemies.Clear();
 	}
 

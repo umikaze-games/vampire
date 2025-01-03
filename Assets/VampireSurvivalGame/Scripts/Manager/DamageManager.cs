@@ -26,7 +26,7 @@ public class DamageManager : MonoBehaviour
 
 	private void OnShowDamageUIEvent(Enemy enemy, int damage)
 	{
-		var damageGameobject=Instantiate(damagePrefab,enemy.transform.position,Quaternion.identity,enemy.gameObject.transform);
+		var damageGameobject=Instantiate(damagePrefab,enemy.transform.position,Quaternion.identity);
 		if (damageGameobject!=null)
 		{
 			damageGameobject.GetComponentInChildren<TextMeshProUGUI>().text = damage.ToString();

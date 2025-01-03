@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 
-public class ProjectileWeapons : Weapon
+public class ZoneWeapons : Weapon
 {
 
 	public int damage;
@@ -13,9 +13,6 @@ public class ProjectileWeapons : Weapon
 	[SerializeField]
 	private float timer;
 	private float lifeTimer;
-
-	public SpriteRenderer projectileImage;
-	public Collider2D projectileCollider;
 
 	private float damageMultiplier = 0.5f;
 	private float rangeMultiplier = 0.05f;

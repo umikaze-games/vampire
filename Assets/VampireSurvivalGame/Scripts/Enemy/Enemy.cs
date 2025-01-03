@@ -75,6 +75,9 @@ public class Enemy : MonoBehaviour,ICharacter
 		float healtAmount = (float)currentHealth / (float)maxHealth;
 		enemyUI.UpdateEnemyHealthUI(healtAmount);
 		EventHandler.CallShowDamageUIEvent(this, damage);
+
+		EventHandler.CallPlaySFXEvent(SFXName.EnemyHit);
+
 		if (currentHealth <= 0)
 		{
 			currentHealth = 0;
@@ -98,7 +101,7 @@ public class Enemy : MonoBehaviour,ICharacter
 	{
 		EventHandler.CallRemoveEnemyEvent(this);
 		Destroy(gameObject);
-		
+		EventHandler.CallPlaySFXEvent(SFXName.EnemyDeath);
 	}
 
 	private void OnTriggerStay2D(Collider2D collision)

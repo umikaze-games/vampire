@@ -95,6 +95,7 @@ public class Player : MonoBehaviour,ICharacter
 	public void Die()
 	{
 		EventHandler.CallGameOverEvent();
+		EventHandler.CallPlaySFXEvent(SFXName.PlayerDeath);
 	}
 
 	public void initStats()

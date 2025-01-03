@@ -3,20 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-	private float timer;
-	private float gameTime;
-	public TextMeshProUGUI gameTimeText;
-
 	public static UIManager Instance;
+
+	public TextMeshProUGUI gameTimeText;
 	public Slider expSlider;
 	public TextMeshProUGUI coinsAmount;
 	public TextMeshProUGUI levelText;
 	public GameObject weaponLevelupPanel;
 	public GameObject gameOverPanel;
+	public GameObject pausePanel;
+
+	public Button restartBtn;
+	public Button returnMenuBtn;
+
+	private float timer;
+	private float gameTime;
 
 	private int levelupBtnIndex;
 	public List<LevelupUI> levelupBtns;
@@ -26,6 +32,8 @@ public class UIManager : MonoBehaviour
 		else Destroy(this.gameObject);
 		expSlider.value = 0;
 
+		restartBtn.onClick.AddListener(RestartGame);
+		returnMenuBtn.onClick.AddListener(ReturnMenu);
 	}
 
 	private void Start()
@@ -130,9 +138,23 @@ public class UIManager : MonoBehaviour
 		StartCoroutine(ShowGameOverPanel());
 	}
 
-	IEnumerator ShowGameOverPanel()
+	private IEnumerator ShowGameOverPanel()
 	{
 		yield return new WaitForSeconds(1);
 		gameOverPanel.SetActive(true);
+	}
+
+	public void PauseGame()
+	{ 
+			
+	}
+
+	public void RestartGame()
+	{
+		SceneManager.LoadScene("MainScene");
+	}
+	public void ReturnMenu()
+	{
+		SceneManager.LoadScene("TitleScene");
 	}
 }

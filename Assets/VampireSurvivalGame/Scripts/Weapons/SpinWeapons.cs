@@ -59,7 +59,6 @@ public class SpinWeapons : Weapon
 		{
 			KnockBack(enemy);
 			enemy.TakeDamage(damage);
-
 		}
 	}
 

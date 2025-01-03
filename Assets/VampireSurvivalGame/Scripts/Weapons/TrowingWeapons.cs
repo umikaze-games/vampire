@@ -65,7 +65,7 @@ public class TrowingWeapons : Weapon
 	}
 	private void GenerateTrowingWeapons()
 	{
-
+		EventHandler.CallPlaySFXEvent(SFXName.AxeThrow);
 		for (int i = 0; i < weaponAmount; i++)
 		{
 			var instantiatedGameObject = Instantiate(axePrefab, new Vector3(transform.position.x,(float)(transform.position.y),transform.position.z), Quaternion.identity);
@@ -80,6 +80,6 @@ public class TrowingWeapons : Weapon
 			//float radians = (360 * i / weaponAmount) * Mathf.Deg2Rad;
 			//instantiatedSword.transform.position = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0);
 		}
-
+	
 	}
 }

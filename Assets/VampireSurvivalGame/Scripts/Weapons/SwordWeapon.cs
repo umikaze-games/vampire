@@ -63,8 +63,8 @@ public class SwordWeapon : Weapon
 	}
 	private void GenerateSword()
 	{
-
-		for(int i=0; i<weaponAmount; i++)
+		EventHandler.CallPlaySFXEvent(SFXName.Sword);
+		for (int i=0; i<weaponAmount; i++)
 		{
 			var instantiatedGameObject = Instantiate(swordPrefab, transform.position, Quaternion.identity, transform);
 			Sword instantiatedSword = instantiatedGameObject.GetComponent<Sword>();
@@ -73,7 +73,7 @@ public class SwordWeapon : Weapon
 			//float radians = (360 * i / weaponAmount) * Mathf.Deg2Rad;
 			//instantiatedSword.transform.position = new Vector3(Mathf.Cos(radians), Mathf.Sin(radians), 0);
 		}
-
+	
 	}
 }
 

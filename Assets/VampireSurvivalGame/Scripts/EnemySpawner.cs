@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 	private Player player;
 	//private float spawnInterval=0.05f;
 	private float spawnCount;
-	//private int spawnMaxCount=100;
+	private int spawnMaxCount=100;
 	public GameObject enemyPrefab;
 
 	private float spawnXMax=10;
@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 	private void Update()
 	{
 		spawnCount -= Time.deltaTime;
-		if (spawnCount >= 200) return;
+		if (spawnEnemyList.Count >= spawnMaxCount) return;
 		SpawnEnemy();
 	}
 	private void OnEnable()

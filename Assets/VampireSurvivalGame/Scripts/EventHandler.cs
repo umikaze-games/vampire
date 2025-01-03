@@ -63,4 +63,10 @@ public static class EventHandler
 	{ 
 		GameOverEvent?.Invoke();
 	}
+
+	public static event Action<SFXName> PlaySFXEvent;
+	public static void CallPlaySFXEvent(SFXName sfxName)
+	{
+		PlaySFXEvent?.Invoke(sfxName);
+	}
 }
