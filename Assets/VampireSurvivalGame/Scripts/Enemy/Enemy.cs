@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour,ICharacter
 		enemyUI.UpdateEnemyHealthUI(healtAmount);
 		EventHandler.CallShowDamageUIEvent(this, damage);
 
-		EventHandler.CallPlaySFXEvent(SFXName.EnemyHit);
+		//EventHandler.CallPlaySFXEvent(SFXName.EnemyHit);
 
 		if (currentHealth <= 0)
 		{
